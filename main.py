@@ -50,6 +50,13 @@ def respond(voice_data):
         name_file.write(names + "\n" + newName + "\n")
         name_file.close()
 
+    if "clear all names" in voice_data:
+        name_file = open("names.txt", "w")
+        name_file.write("")
+        name_file.close()
+
+        speak("Cleared all names!")
+
 def speak(text):
     tts = gTTS(text=text, lang="en")
     filename = "answer.mp3"

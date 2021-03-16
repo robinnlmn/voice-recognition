@@ -4,6 +4,9 @@ import os
 import playsound
 from gtts import gTTS
 import requests
+import subprocess
+import webbrowser
+import sys
 
 r = sr.Recognizer()
 
@@ -56,6 +59,20 @@ def respond(voice_data):
         name_file.close()
 
         speak("Cleared all names!")
+
+    if "open website" in voice_data:
+        url = 'http://google.com'
+        if sys.platform == 'darwin':
+            subprocess.Popen(['open', url])
+        else:
+            webbrowser.open_new_tab(url)
+
+    if "open twitch" in voice_data:
+        url = 'http://twitch.com'
+        if sys.platform == 'darwin':
+            subprocess.Popen(['open', url])
+        else:
+            webbrowser.open_new_tab(url)
 
 def speak(text):
     tts = gTTS(text=text, lang="en")
